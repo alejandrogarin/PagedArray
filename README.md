@@ -5,5 +5,5 @@
 
 Modifications to the original repository to allow:
 
-Movement of element between pages
-Set an element in any index of the array
+* Movement of element between pages
+* Set an element in any index of the array
