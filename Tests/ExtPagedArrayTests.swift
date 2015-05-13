@@ -185,9 +185,15 @@ class ExtPagedArrayTests: XCTestCase {
         XCTAssertEqual(tinyArray.loadedElements.count, 14, "Array total count is not correct")
     }
     
-    func testSetElementsFirstPage() {
-        var tinyArray: PagedArray<Int> = PagedArray(count: 0, pageSize: 10)
-        tinyArray.setElements(Array(), page: 0)
+    func testSetEmptyElementsFirstPage() {
+        var emptyArray: PagedArray<Int> = PagedArray(count: 0, pageSize: 10)
+        emptyArray.setElements(Array(), page: 0)
+        XCTAssertEqual(emptyArray.lastPage, 0)
     }
     
+    func testSetEmptyElementsFirstPageWithStartPage() {
+        var emptyArray: PagedArray<Int> = PagedArray(count: 0, pageSize: 10, startPage:1)
+        emptyArray.setElements(Array(), page: 1)
+        XCTAssertEqual(emptyArray.lastPage, 1)
+    }
 }
