@@ -134,14 +134,16 @@ public struct PagedArray<T> {
     public mutating func appendElement(element: Element) {
         let loadedCount: Int = self.loadedElements.count
         let page = self.pageNumberForIndex(loadedCount-1)
-        var elements = self.elementsForPage(page)
-        if var elements = elements {
-            if (elements.count == pageSize) {
-                let newPageElements: [Element] = [element]
-                pages[page+1] = newPageElements
-            } else {
-                elements.append(element)
-                pages[page] = elements
+        if (page == lastPage) {
+            var elements = self.elementsForPage(page)
+            if var elements = elements {
+                if (elements.count == pageSize) {
+                    let newPageElements: [Element] = [element]
+                    pages[page+1] = newPageElements
+                } else {
+                    elements.append(element)
+                    pages[page] = elements
+                }
             }
         }
         count++
