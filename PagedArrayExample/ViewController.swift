@@ -194,12 +194,15 @@ extension ViewController {
     
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         self.pagedArray.moveElement(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
+        let fromElement = datasource.removeAtIndex(sourceIndexPath.row)
+        datasource.insert(fromElement, atIndex: destinationIndexPath.row)
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
         var actions : [AnyObject] = [];
         let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { [weak self] (action, indexPath) -> Void in
             if let actualSelf = self {
+                datasource.removeAtIndex(indexPath.row)
                 let page: Int = actualSelf.pagedArray.pageNumberForIndex(actualSelf.pagedArray.count)
                 let indexsPathToRemove: [NSIndexPath] = [NSIndexPath(forRow: indexPath.row, inSection: 0)];
                 actualSelf.tableView.beginUpdates()
