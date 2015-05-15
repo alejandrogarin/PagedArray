@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69A196101B0649EC000DD291 /* PagedArray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BDA8731AAB73DC00BAED02 /* PagedArray.framework */; };
+		69A196111B0649EC000DD291 /* PagedArray.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 93BDA8731AAB73DC00BAED02 /* PagedArray.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		93BDA84E1AAB736600BAED02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BDA84D1AAB736600BAED02 /* AppDelegate.swift */; };
 		93BDA8501AAB736600BAED02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BDA84F1AAB736600BAED02 /* ViewController.swift */; };
 		93BDA8531AAB736600BAED02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93BDA8511AAB736600BAED02 /* Main.storyboard */; };
 		93BDA8551AAB736600BAED02 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93BDA8541AAB736600BAED02 /* Images.xcassets */; };
 		93BDA8581AAB736600BAED02 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BDA8561AAB736600BAED02 /* LaunchScreen.xib */; };
-		93BDA8781AAB73F000BAED02 /* PagedArray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BDA8731AAB73DC00BAED02 /* PagedArray.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		69A196121B0649EC000DD291 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93BDA86D1AAB73DC00BAED02 /* PagedArray.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 93C47CE71AA9E2D2006FF405;
+			remoteInfo = PagedArray;
+		};
 		93BDA8721AAB73DC00BAED02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 93BDA86D1AAB73DC00BAED02 /* PagedArray.xcodeproj */;
@@ -39,6 +47,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		69A196141B0649EC000DD291 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				69A196111B0649EC000DD291 /* PagedArray.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		93BDA8481AAB736600BAED02 /* PagedArrayExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagedArrayExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93BDA84C1AAB736600BAED02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93BDA8781AAB73F000BAED02 /* PagedArray.framework in Frameworks */,
+				69A196101B0649EC000DD291 /* PagedArray.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,11 +141,13 @@
 				93BDA8441AAB736600BAED02 /* Sources */,
 				93BDA8451AAB736600BAED02 /* Frameworks */,
 				93BDA8461AAB736600BAED02 /* Resources */,
+				69A196141B0649EC000DD291 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				93BDA8771AAB73EA00BAED02 /* PBXTargetDependency */,
+				69A196131B0649EC000DD291 /* PBXTargetDependency */,
 			);
 			name = PagedArrayExample;
 			productName = PagedArrayExample;
@@ -211,6 +235,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		69A196131B0649EC000DD291 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PagedArray;
+			targetProxy = 69A196121B0649EC000DD291 /* PBXContainerItemProxy */;
+		};
 		93BDA8771AAB73EA00BAED02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PagedArray;

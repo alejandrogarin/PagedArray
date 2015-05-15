@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C81h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vbb-Mc-ymk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vbb-Mc-ymk">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,7 +21,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wmM-VN-JG5">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -34,38 +34,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Rzr-W3-3Xo">
-                        <barButtonItem key="leftBarButtonItem" title="Clear data" id="XpO-31-dKe">
+                        <barButtonItem key="leftBarButtonItem" title="Reload table" id="XpO-31-dKe">
                             <connections>
                                 <action selector="clearDataPressed" destination="BKV-VN-4Zn" id="qjH-8N-jXj"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="aBe-Yy-tZV">
-                            <view key="customView" contentMode="scaleToFill" id="2NT-K6-aMG">
-                                <rect key="frame" x="424" y="5" width="150" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EnB-qz-unQ">
-                                        <rect key="frame" x="101" y="1" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="preLoadingSwitchChanged:" destination="BKV-VN-4Zn" eventType="valueChanged" id="g3S-mz-MgF"/>
-                                        </connections>
-                                    </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pre-loading" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OA-Z8-zg4">
-                                        <rect key="frame" x="0.0" y="6" width="89" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="EnB-qz-unQ" secondAttribute="trailing" id="3qQ-Wo-izr"/>
-                                    <constraint firstItem="EnB-qz-unQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0OA-Z8-zg4" secondAttribute="trailing" constant="10" id="7mw-Rx-rBm"/>
-                                    <constraint firstAttribute="centerY" secondItem="0OA-Z8-zg4" secondAttribute="centerY" id="OhM-nX-5D6"/>
-                                    <constraint firstItem="0OA-Z8-zg4" firstAttribute="leading" secondItem="2NT-K6-aMG" secondAttribute="leading" id="Rum-G0-CpR"/>
-                                    <constraint firstAttribute="centerY" secondItem="EnB-qz-unQ" secondAttribute="centerY" id="ozP-oL-c3u"/>
-                                </constraints>
-                            </view>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>

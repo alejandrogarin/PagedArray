@@ -31,6 +31,8 @@ let PageSize = 25 /// Paging size
 let DataLoadingOperationDuration = 0.5 /// Simulated network operation duration
 let TotalCount = 200 /// Number of rows in table view
 
+// This is our database
+var datasource: [String] = []
 
 class ViewController: UITableViewController {
 
@@ -41,9 +43,44 @@ class ViewController: UITableViewController {
     var dataLoadingOperations = [Int: NSOperation]()
     var shouldPreload = true
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+            self.navigationItem.rightBarButtonItems = [self.addBtn, self.editBtn]
+        
+        for (var i=0; i < TotalCount; i++) {
+            datasource.append("Content data \(i)")
+        }
+    }
+    
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    private var editBtn:UIBarButtonItem {
+        get {
+            return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "barButtonItemReorderTouched")
+        }
+    }
+    
+    private var doneBtn:UIBarButtonItem {
+        get {
+            return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "barButtonItemReorderTouched")
+        }
+    }
+    
+    private var addBtn:UIBarButtonItem {
+        get {
+            return UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "barButtonItemAddTouched")
+        }
+    }
+    
     // MARK: User actions
     
     @IBAction func clearDataPressed() {
+        if (self.tableView.editing) {
+            self.navigationItem.rightBarButtonItems = [self.editBtn]
+        }
+        self.tableView.setEditing(false, animated: true)
         dataLoadingOperations.removeAll(keepCapacity: true)
         operationQueue.cancelAllOperations()
         pagedArray.removeAllPages()
@@ -55,6 +92,28 @@ class ViewController: UITableViewController {
     }
     
     // MARK: Private functions
+    
+    func barButtonItemReorderTouched() {
+        
+        if (self.tableView.editing) {
+            self.navigationItem.rightBarButtonItems = [self.addBtn, self.editBtn]
+        } else {
+            self.navigationItem.rightBarButtonItems = [self.addBtn, self.doneBtn]
+        }
+        self.tableView.setEditing(!self.tableView.editing, animated: true)
+    }
+    
+    func barButtonItemAddTouched() {
+        let newElement = "New content \(NSDate.new())"
+        
+        let indexsPathToAdd: [NSIndexPath] = [NSIndexPath(forRow: self.pagedArray.count, inSection: 0)];
+        self.pagedArray.appendElement(newElement)
+        self.tableView.beginUpdates()
+        self.tableView.insertRowsAtIndexPaths(indexsPathToAdd, withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tableView.endUpdates()
+        
+        datasource.append(newElement)
+    }
     
     private func configureCell(cell: UITableViewCell, data: String?) {
         if let data = data {
@@ -133,6 +192,33 @@ extension ViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        self.pagedArray.moveElement(fromIndex: sourceIndexPath.row, toIndex: destinationIndexPath.row)
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        var actions : [AnyObject] = [];
+        let delete = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { [weak self] (action, indexPath) -> Void in
+            if let actualSelf = self {
+                let page: Int = actualSelf.pagedArray.pageNumberForIndex(actualSelf.pagedArray.count)
+                let indexsPathToRemove: [NSIndexPath] = [NSIndexPath(forRow: indexPath.row, inSection: 0)];
+                actualSelf.tableView.beginUpdates()
+                actualSelf.tableView.deleteRowsAtIndexPaths(indexsPathToRemove, withRowAnimation: UITableViewRowAnimation.Fade)
+                actualSelf.pagedArray.deleteElement(atIndex: indexPath.row)
+                actualSelf.tableView.endUpdates()
+            }
+        }
+        actions.append(delete);
+        return actions;
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
 }
 
 
@@ -150,7 +236,7 @@ class DataLoadingOperation: NSBlockOperation {
         }
         
         completionBlock = {
-            let data = indexesToLoad.map { "Content data \($0)" }
+            let data:[String] = [] + datasource[indexesToLoad]
             
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 completion(indexes: indexesToLoad, data: data)
