@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/cocoapods/l/PagedArray.svg?style=flat)](http://cocoadocs.org/docsets/PagedArray)
 [![Platform](https://img.shields.io/cocoapods/p/PagedArray.svg?style=flat)](http://cocoadocs.org/docsets/PagedArray)
 
-## Extended features from the original forwk
+## Extended features from the original project
 
 * Reordering of the array
 * Deleting elements from the array
